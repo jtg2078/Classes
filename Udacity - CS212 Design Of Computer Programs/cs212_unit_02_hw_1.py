@@ -17,13 +17,29 @@ def compile_formula(formula, verbose=False):
 	is called with Y eqal to 0, the function should return False."""
 	
 	# modify the code in this function.
-	print formula
-	
 	letters = ''.join(set(re.findall('[A-Z]', formula)))
 	parms = ', '.join(letters)
 	tokens = map(compile_word, re.split('([A-Z]+)', formula))
 	body = ''.join(tokens)
-	f = 'lambda %s: %s' % (parms, body)
+	
+	print 'formula :', formula
+	print 'letters :', letters
+	print 'parms :', parms
+	print 'tokens :', tokens
+	print 'body :', body
+	c = set()
+	for t in tokens:
+		if len(t) > 2 and t[-1] == ')':
+			c.add(t[-2])
+			
+	checks = []
+	for t in c:
+		checks.append(t)
+		checks.append(' != 0 ')
+		checks.append('and ')
+	checks = ''.join(checks)
+	
+	f = 'lambda %s: %s %s' % (parms, checks, body,)
 	if verbose: print f
 	return eval(f), letters
 
@@ -58,3 +74,4 @@ def test():
 	return 'tests pass'
 
 test()
+#faster_solve('A + B == BA')
