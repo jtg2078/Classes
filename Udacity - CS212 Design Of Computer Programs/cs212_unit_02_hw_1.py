@@ -22,21 +22,24 @@ def compile_formula(formula, verbose=False):
 	tokens = map(compile_word, re.split('([A-Z]+)', formula))
 	body = ''.join(tokens)
 	
-	print 'formula :', formula
-	print 'letters :', letters
-	print 'parms :', parms
-	print 'tokens :', tokens
-	print 'body :', body
-	c = set()
+	if verbose:
+		print 'formula :', formula
+		print 'letters :', letters
+		print 'parms :', parms
+		print 'tokens :', tokens
+		print 'body :', body
+	
+	s = set()
 	for t in tokens:
 		if len(t) > 2 and t[-1] == ')':
-			c.add(t[-2])
+			s.add(t[-2])
 			
 	checks = []
-	for t in c:
+	for t in s:
 		checks.append(t)
 		checks.append(' != 0 ')
 		checks.append('and ')
+	
 	checks = ''.join(checks)
 	
 	f = 'lambda %s: %s %s' % (parms, checks, body,)
@@ -73,5 +76,4 @@ def test():
 	assert faster_solve('X / X == X') == '1 / 1 == 1'
 	return 'tests pass'
 
-test()
-#faster_solve('A + B == BA')
+print test()
