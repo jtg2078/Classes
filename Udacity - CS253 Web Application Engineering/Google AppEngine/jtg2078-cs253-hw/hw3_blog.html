@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+		<title>Cactuarj's Notepad</title>
+	</head>
+
+	<body>
+  		<a href="/blog" class="main-title">
+    		Cactuarj's Notepad
+  		</a>
+
+  		<div class="login-area">
+    
+  		</div>
+
+	  	<div id="content">
+	
+		{% for post in posts %}
+	    	<div class="post">
+	  			<div class="post-heading">
+	    			<a href="/blog/{{post.key().id()}}" class="post-title">
+	      				{{post.subject}}
+	    			</a>
+	    			<div class="post-date">
+	      				{{post.created.strftime("%b %d, %Y")}}
+	    			</div>
+	  			</div>
+	  		<div class="post-content">
+	    		{{post.content}}
+	  		</div>
+			<br>
+		{% endfor %}
+		
+		</div>
+		
+		<div class="age">
+			
+		</div>
+    
+	</body>
+</html>

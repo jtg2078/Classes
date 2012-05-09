@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<link type="text/css" rel="stylesheet" href="/static/main.css" />
+        <title>/Cactuarj's Notepad/</title>
+    </head>
+    <body>
+		<h1>/a new blog post/</h1>
+		
+		<form method="post">
+			<label>
+				<div>subject</div>
+				<input type='text' name='subject' value={{subject}}>
+			</label>
+			
+			<label>
+				<div>content</div>
+				<textarea name='content'>{{content}}</textarea>
+			</label>
+			
+			<div class='error'>{{error}}</div>
+			
+			<input type='submit'>
+		</form>
+		
+    </body>
+</html>

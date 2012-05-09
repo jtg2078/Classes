@@ -14,9 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import os
 import webapp2
 import cgi
 import re
+import jinja2
+jinja_environment = jinja2.Environment(autoescape=True, loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+from datetime import datetime
+from google.appengine.ext import db
 
 unit02_hw1_form = """
 <html>
@@ -255,10 +261,93 @@ class WelcomeHandler(webapp2.RequestHandler):
 	def get(self):
 		username = self.request.get('username')
 		self.response.out.write("Welcome, %s" % username)
+		
+# -------------------- hw3 --------------------
+
+"""
+----------------
+Including CSS as static files
+http://forums.udacity.com/cs253-april2012/questions/14052/including-css-as-static-files
+These two lines need to bee the last for the handlers, because it satisfies every path.
+
+- url: .*
+  script: main.app
+----------------
+datetime.datetime and strftime()
+http://forums.udacity.com/cs253-april2012/questions/13099/datetimedatetime-and-strftime
+I think it might be because you have an extra % before the :.
+
+Should be just:
+
+{{entry.date.strftime("%b %d, %Y %I:%M %p")}}
+
+Related: http://docs.python.org/library/time.html#time.strftime
+
+
+"""
+
+class Handler(webapp2.RequestHandler):
+	def write(self, *a, **kw):
+		self.response.out.write(*a, **kw)
+	
+	def render_str(self, template, **params):
+		t = jinja_environment.get_template(template)
+		return t.render(params)
+	
+	def render(self, template, **kw):
+		self.write(self.render_str(template, **kw))
+		
+		
+class Post(db.Model):
+	subject = db.StringProperty(required = True)
+	content = db.TextProperty(required = True)
+	created = db.DateTimeProperty(auto_now_add = True)
+	
+		
+class HW3NewPostHandler(Handler):
+	def render_front(self, subject='', content='', error=''):
+		self.render('hw3_new_post.html', subject = subject, content = content, error = error)
+		
+	def get(self):
+		self.render_front()
+		
+	def post(self):
+		subject = self.request.get('subject')
+		content = self.request.get('content')
+		
+		if subject and content:
+			post = Post(subject = subject, content = content)
+			post.put()
+			post_id = str(post.key().id())
+			self.redirect('/blog/%s' % post_id)
+		else:
+			error = 'subject and content cannot be blank'
+			self.render_front(subject, content, error)
+			
+
+class HW3PostHandler(Handler):
+	def render_front(self, post_id='', subject='', content='', created='', error=''):
+		self.render('hw3_post.html', post_id = post_id, subject = subject, content = content, created = created, error = error)
+		
+	def get(self, post_id):
+		post = Post.get_by_id(long(post_id))
+		if post:
+			self.render_front(post_id, post.subject, post.content, post.created, '')
+		else:
+			self.render_front(post_id, '', '', '', 'post does not exit ?.?')
+
+
+class HW3BlogPageHandler(Handler):
+	def get(self):
+		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+		self.render('hw3_blog.html', posts = posts)
 
 
 app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/unit02_hw_1_rot13', Unit02HW1),
 							   ('/unit02_hw_2_signup', Unit02HW2),
-							   ('/welcome', WelcomeHandler)],
+							   ('/welcome', WelcomeHandler),
+							   ('/blog', HW3BlogPageHandler),
+							   ('/blog/newpost', HW3NewPostHandler),
+							   ('/blog/([0-9]+)', HW3PostHandler)],
                               debug=True)
