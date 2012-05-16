@@ -122,13 +122,67 @@ def p_js_empty(p):
 # This can be done in about 50 lines with 15 grammar rules.
 ######################################################################
 
+#element -> FUNCTION IDENTIFIER ( optparams ) compoundstmt
 
+def p_element_f(p):
+	'element : FUNCTION IDENTIFIER LPAREN optparams RPAREN compoundstmt'
+	p[0] = ("function", p[2], p[4], p[6]) 
 
+def p_element_s(p):
+	'element : stmt SEMICOLON'
+	p[0] = ("stmt", p[1])
 
+def p_optparams_empty(p):
+	'optparams : '
+	p[0] = [ ]
 
+def p_optparams(p):
+	'optparams : params'
+	p[0] = p[1]
 
+def p_params(p):
+	'params : IDENTIFIER COMMA params'
+	p[0] = [p[1]] + p[3]
 
+def p_param(p):
+	'params : IDENTIFIER'
+	p[0] = [p[1]]
 
+def p_compoundstmt(p):
+	'compoundstmt : LBRACE statements RBRACE'
+	p[0] = p[2]
+
+def p_statements(p):
+	'statements : stmt SEMICOLON statements'
+	p[0] = [p[1]] + p[3]
+
+def p_statements_empty(p):
+	'statements : '
+	p[0] = [ ]
+	
+def p_stmt_if_then(p):
+	'stmt : IF exp compoundstmt'
+	p[0] = ("if-then", p[2], p[3])
+
+def p_stmt_if_then_else(p):
+	'stmt : IF exp compoundstmt ELSE compoundstmt'
+	p[0] = ("if-then-else", p[2], p[3], p[5])
+
+def p_stmt_assign(p):
+	'stmt : IDENTIFIER EQUAL exp'
+	p[0] = ("assign", p[1], p[3])
+
+def p_stmt_return(p):
+	'stmt : RETURN exp'
+	p[0] = ("return", p[2])
+	
+def p_stmt_var(p):
+	'stmt : VAR IDENTIFIER EQUAL exp'
+	p[0] = ("var", p[2], p[4])
+
+def p_stmt_exp(p):
+	'stmt : exp'
+	p[0] = ("exp", p[1])
 
 
 ######################################################################
