@@ -31,6 +31,7 @@ jinja_environment = jinja2.Environment(autoescape=True, loader=jinja2.FileSystem
 
 from datetime import datetime
 from google.appengine.ext import db
+from google.appengine.api import memcache
 
 unit02_hw1_form = """
 <html>
@@ -602,9 +603,9 @@ def HW6_get_all_posts():
 		return posts
 	else:
 		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
-		AGE[key] = datetime.now()
 		posts = list(posts)
 		set(key, posts)
+		set('AGE-ALLPOSTS', datetime.now())
 		logging.error('db hit for get all posts')
 		return posts
 
@@ -613,23 +614,19 @@ def HW6_update_all_posts():
 	result = gets(key)
 	if result:
 		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
-		AGE[key] = datetime.now()
 		posts = list(posts)
+		set(key, posts)
+		set('AGE-ALLPOSTS', datetime.now())
 		logging.error('db hit for get all posts')
-		val,hash = result
-		r = cas(key, posts, hash)
-		while r == False:
-			val,hash = gets(key)
-			r = cas(key, posts, hash)
 		
 def HW6_get_query_age(key):
-	query_time = AGE[key]
+	query_time = get(key)
 	now = datetime.now()
 	diff = now - query_time
 	return diff.seconds
 	
 def HW6_get_all_posts_query_age():
-	key = 'ALLPOSTS' 
+	key = 'AGE-ALLPOSTS' 
 	return HW6_get_query_age(key)
 
 def HW6_get_post(post_id):
@@ -641,28 +638,29 @@ def HW6_get_post(post_id):
 		return post
 	else:
 		post = Post.get_by_id(long(post_id))
-		AGE[key] = datetime.now()
 		set(key, post)
+		set('AGE-POST-%s' %  post_id, datetime.now())
 		logging.error('db hit for get single post for id %s' % post_id)
 		return post
 
 def HW6_get_single_post_query_age(post_id):
-	key = 'POST-%s' %  post_id
+	key = 'AGE-POST-%s' %  post_id
 	return HW6_get_query_age(key)
 
 def HW6_clear_all_cache():
 	flush()
-	AGE.clear()
 		
 
 #return True after setting the data
 def set(key, value):
-	CACHE[key] = value
+	#CACHE[key] = value
+	memcache.set(key, value)
 	return True
 
 #return the value for key
 def get(key):
-    return CACHE.get(key)
+	#return CACHE.get(key)
+	return memcache.get(key)
 
 #delete key from the cache
 def delete(key):
@@ -671,7 +669,8 @@ def delete(key):
 
 #clear the entire cache
 def flush():
-	CACHE.clear()
+	#CACHE.clear()
+	memcache.flush_all()
 
 #return a tuple of (value, h), where h is hash of the value. a simple hash
 #we can use here is hash(repr(val))
