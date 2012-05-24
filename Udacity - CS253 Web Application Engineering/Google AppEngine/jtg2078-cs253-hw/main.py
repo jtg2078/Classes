@@ -18,7 +18,12 @@ import os
 import webapp2
 import cgi
 import re
+import hmac
+import random
+import string
+import hashlib
 import jinja2
+import json
 jinja_environment = jinja2.Environment(autoescape=True, loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 from datetime import datetime
@@ -343,11 +348,253 @@ class HW3BlogPageHandler(Handler):
 		self.render('hw3_blog.html', posts = posts)
 
 
+# -------------------- hw4 --------------------
+"""
+In order to be graded correctly for this homework, there are a few things to keep in mind. 
+We'll be grading your web app by POSTing new users to your signup form and checking that we 
+correctly get redirected and a cookie gets set. 
+There are a few main issues you need to keep in mind in order for this to work:
+
+    - We assume your form to signup new users is at a path of '/signup' from the url you enter. That is, 
+      if you enter 'www.myblog.com/blog' in the text field above, then the form is at 'www.myblog.com/blog/signup'.
+    - The form method must be POST, not GET.
+    - The form input boxes must have the names 'username', 'password', 'verify', and 'email' in order for the 
+	  grading script to correctly post to them.
+    - Don't forget to escape your output!
+
+Also, the basic methods you'll use to set and get cookies are as follows: In order to get 
+a cookie you receive from the user, you can use 'self.request.cookies.get(name)', where name 
+is the name of the cookie you are looking for. In order to send a cookie to a user, you simply 
+add the header to your response. For example, 'self.response.headers.add_header('Set-Cookie', 'name=value; Path=/')', 
+where name is the name of the cookie, and value is the value you're setting it to. The Path section of the 
+header should be left as is for our purposes.
+
+If you're interested in the css styling file we use for the example page, the link is here.
+
+"""
+
+class User(db.Model):
+	username = db.StringProperty(required = True)
+	password = db.StringProperty(required = True)
+	user_email = db.StringProperty(required = False)
+	created = db.DateTimeProperty(auto_now_add = True)
+	
+SECRET = 'imsosecret'
+def hash_str(s):
+	return hmac.new(SECRET, s).hexdigest()
+
+def make_secure_val(s):
+	return "%s|%s" % (s, hash_str(s))
+
+def check_secure_val(h):
+	val = h.split('|')[0]
+	return h == make_secure_val(val)
+	
+def make_salt():
+    return ''.join(random.choice(string.letters) for x in xrange(5))
+
+def make_pw_hash(name, pw, salt = make_salt()):
+	h = hashlib.sha256(name + pw + salt).hexdigest()
+	return '%s,%s' % (h, salt)
+
+def valid_pw(name, pw, h):
+	return h == make_pw_hash(name, pw, h.split(',')[1])
+
+class HW4SignUpHandler(Handler):
+	def render_front(self, username='', password='', verify='', email='', username_error='', password_error='', verify_error='', email_error=''):
+		self.render('hw4_sign_up.html', username = username, 
+										password = password, 
+										verify = verify, 
+										email = email, 
+										username_error = username_error,
+										password_error = password_error,
+										verify_error = verify_error,
+										email_error = email_error)
+			
+	def get(self):
+		self.render_front()
+			
+	def post(self):
+		user_username = escape_html(self.request.get('username'))
+		user_password = escape_html(self.request.get('password'))
+		user_verify = escape_html(self.request.get('verify'))
+		user_email = escape_html(self.request.get('email'))
+		
+		username_error = ''
+		password_error = ''
+		verify_error = ''
+		email_error = ''
+		
+		username = self.valid_username(user_username)
+		password = self.valid_password(user_password)
+		
+		is_valid = True
+		
+		if not username:
+			username_error = escape_html("That's not a valid username.")
+			is_valid = False;
+		
+		if not password:
+			password_error = escape_html("That wasn't a valid password.")
+			is_valid = False;
+		else:
+			verify = self.valid_password_verify(user_password, user_verify)
+			if not verify:
+				verify_error = escape_html("Your passwords didn't match.")
+				is_valid = False;
+		
+		password = ''
+		verify = ''
+		
+		if user_email:
+			email = self.valid_email(user_email)
+			if not email:
+				email_error = escape_html("That's not a valid email.")
+				is_valid = False;
+				
+		if is_valid:
+			query = db.GqlQuery("SELECT * FROM User WHERE username = :1", user_username)
+			user = query.get()
+			if user:
+				username_error = escape_html("That user already exists.")
+				is_valid = False;
+				
+		
+		if is_valid:
+			user = User(username = user_username, password = make_pw_hash(user_username, user_password), email = user_email)
+			user.put()
+			user_id = str(user.key().id())
+			hash = make_secure_val(user_id)
+			self.response.headers.add_header('Set-Cookie', 'user_id=%s; Path=/' % (hash))
+			self.redirect("/blog/welcome")
+		else:
+			self.render_front(user_username, '', '', user_email, username_error, password_error, verify_error,  email_error)
+	
+	def valid_username(self, username):
+		return USER_RE.match(username)
+		
+	def valid_password(self, password):
+		return PWD_RE.match(password)
+	
+	def valid_password_verify(self, password, verify):
+		if self.valid_password(password):
+			if password == verify:
+				return verify
+		return None
+	
+	def valid_email(self, email):
+		return EMAIL_RE.match(email)
+
+class HW4WelcomeHandler(Handler):
+	def render_front(self, username=''):
+		self.render('hw4_welcome.html', username = username)
+	
+	def get(self):
+		hash = self.request.cookies.get('user_id')
+		check = check_secure_val(hash)
+		if check == True:
+			user_id = hash.split('|')[0]
+			user = User.get_by_id(long(user_id))
+			self.render_front(user.username)
+		else:
+			self.redirect("/blog/signup")
+			
+class HW4SignInHandler(Handler):
+	def render_front(self, username='', error=''):
+		self.render('hw4_sign_in.html', username = username, error = error)
+	
+	def get(self):
+		self.render_front()
+		
+	def post(self):
+		username = self.request.get('username')
+		password = self.request.get('password')
+		
+		error = 'Invalid login'
+		
+		if username and password:
+			query = db.GqlQuery("SELECT * FROM User WHERE username = :1", username)
+			user = query.get()
+			if user:
+				hash = user.password
+				check = valid_pw(username, password, hash)
+				if check:
+					user_id = str(user.key().id())
+					hash = make_secure_val(user_id)
+					self.response.headers.add_header('Set-Cookie', 'user_id=%s; Path=/' % (hash))
+					self.redirect("/blog/welcome")
+				else:
+					self.render_front(username, error)
+			else:
+				self.render_front(username, error)
+		else:
+			self.render_front(username, error)
+
+class HW4SignOutHandler(Handler):
+	def get(self):
+		self.response.headers.add_header('Set-Cookie', 'user_id=%s; Path=/' % (''))
+		self.redirect("/blog/signup")
+
+# -------------------- hw5 --------------------
+'''
+In order to be graded correctly for this homework, there are a few things to keep in mind. 
+We\'ll be grading your web app by checking the JSON output on both the front page and permalink pages. 
+Note that we still require all the functionality from previous homeworks.
+
+    We assume your frontpage JSON is at a location of "/.json from the URL you enter. 
+	That is, if you enter \'www.myblog.com/blog\' in the text field above, then your frontpage JSON 
+	is at \'www.myblog.com/blog/.json\'. We assume your permalink JSON is at ".json" from your permalink URLs.
+	
+	signup_url = url + "/signup"
+	login_url = url + "/login"
+	logout_url = url + "/logout"
+	post_url = url + "/newpost"
+	json_url = url + "/.json"
+	permalink_json_url = permalink_url + ".json
+
+Sample output:
+{"content": "again", "created": "Tue May  8 23:04:17 2012", "last_modified": "Tue May  8 23:04:17 2012", "subject": "the suit is back!"}
+
+'''
+
+class HW5BlogPageJSONHandler(Handler):
+	def get(self):
+		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+		l = []
+		for post in posts:
+			p = {
+				'content': post.content,
+				'created': post.created.strftime("%a %b %d, %Y %I:%M %p"), #May 09, 2012 04:35 PM
+				'subject': post.subject }
+			l.append(p)
+		self.response.headers['Content-Type'] = "application/json; charset=utf-8"
+		self.response.out.write(json.dumps(l))
+
+class HW5PostJSONHandler(Handler):
+	def get(self, post_id):
+		post = Post.get_by_id(long(post_id))
+		if post:
+			p = {
+				'content': post.content,
+				'created': post.created.strftime("%a %b %d, %Y %I:%M %p"), #May 09, 2012 04:35 PM
+				'subject': post.subject }
+			self.response.headers['Content-Type'] = "application/json; charset=utf-8"
+			self.response.out.write(json.dumps(p))
+
+	
+			
+	
 app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/unit02_hw_1_rot13', Unit02HW1),
 							   ('/unit02_hw_2_signup', Unit02HW2),
 							   ('/welcome', WelcomeHandler),
 							   ('/blog', HW3BlogPageHandler),
 							   ('/blog/newpost', HW3NewPostHandler),
-							   ('/blog/([0-9]+)', HW3PostHandler)],
+							   ('/blog/([0-9]+)', HW3PostHandler),
+							   ('/blog/signup', HW4SignUpHandler),
+							   ('/blog/welcome', HW4WelcomeHandler),
+							   ('/blog/login', HW4SignInHandler),
+							   ('/blog/logout', HW4SignOutHandler),
+							   ('/blog/.json', HW5BlogPageJSONHandler),
+							   ('/blog/([0-9]+).json', HW5PostJSONHandler)],
                               debug=True)
