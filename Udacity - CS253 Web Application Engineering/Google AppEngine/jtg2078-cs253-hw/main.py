@@ -24,6 +24,9 @@ import string
 import hashlib
 import jinja2
 import json
+import time
+import calendar
+import logging
 jinja_environment = jinja2.Environment(autoescape=True, loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 from datetime import datetime
@@ -324,6 +327,7 @@ class HW3NewPostHandler(Handler):
 			post = Post(subject = subject, content = content)
 			post.put()
 			post_id = str(post.key().id())
+			HW6_update_all_posts()
 			self.redirect('/blog/%s' % post_id)
 		else:
 			error = 'subject and content cannot be blank'
@@ -331,21 +335,21 @@ class HW3NewPostHandler(Handler):
 			
 
 class HW3PostHandler(Handler):
-	def render_front(self, post_id='', subject='', content='', created='', error=''):
-		self.render('hw3_post.html', post_id = post_id, subject = subject, content = content, created = created, error = error)
+	def render_front(self, post_id='', subject='', content='', created='', age='', error=''):
+		self.render('hw3_post.html', post_id = post_id, subject = subject, content = content, created = created, age = age, error = error)
 		
 	def get(self, post_id):
-		post = Post.get_by_id(long(post_id))
+		post = HW6_get_post(post_id)
 		if post:
-			self.render_front(post_id, post.subject, post.content, post.created, '')
+			self.render_front(post_id, post.subject, post.content, post.created, HW6_get_single_post_query_age(post_id), '')
 		else:
 			self.render_front(post_id, '', '', '', 'post does not exit ?.?')
 
 
 class HW3BlogPageHandler(Handler):
 	def get(self):
-		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
-		self.render('hw3_blog.html', posts = posts)
+		posts = HW6_get_all_posts()
+		self.render('hw3_blog.html', posts = posts, age = HW6_get_all_posts_query_age())
 
 
 # -------------------- hw4 --------------------
@@ -559,7 +563,7 @@ Sample output:
 
 class HW5BlogPageJSONHandler(Handler):
 	def get(self):
-		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+		posts = HW6_get_all_posts()
 		l = []
 		for post in posts:
 			p = {
@@ -581,9 +585,121 @@ class HW5PostJSONHandler(Handler):
 			self.response.headers['Content-Type'] = "application/json; charset=utf-8"
 			self.response.out.write(json.dumps(p))
 
+
+# -------------------- hw6 --------------------
+
+CACHE = {}
+AGE = {}
+
+KEY = 'ALLPOSTS'
+
+def HW6_get_all_posts():
+	key = 'ALLPOSTS'
+	result = gets(key)
+	if result:
+		posts, hash = result
+		logging.error('cache hit for get all posts')
+		return posts
+	else:
+		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+		AGE[key] = datetime.now()
+		posts = list(posts)
+		set(key, posts)
+		logging.error('db hit for get all posts')
+		return posts
+
+def HW6_update_all_posts():
+	key = 'ALLPOSTS'
+	result = gets(key)
+	if result:
+		posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+		AGE[key] = datetime.now()
+		posts = list(posts)
+		logging.error('db hit for get all posts')
+		val,hash = result
+		r = cas(key, posts, hash)
+		while r == False:
+			val,hash = gets(key)
+			r = cas(key, posts, hash)
+		
+def HW6_get_query_age(key):
+	query_time = AGE[key]
+	now = datetime.now()
+	diff = now - query_time
+	return diff.seconds
 	
+def HW6_get_all_posts_query_age():
+	key = 'ALLPOSTS' 
+	return HW6_get_query_age(key)
+
+def HW6_get_post(post_id):
+	key = 'POST-%s' %  post_id
+	result = gets(key)
+	if result:
+		post, hash = result
+		logging.error('cache hit for get single post for id %s' % post_id)
+		return post
+	else:
+		post = Post.get_by_id(long(post_id))
+		AGE[key] = datetime.now()
+		set(key, post)
+		logging.error('db hit for get single post for id %s' % post_id)
+		return post
+
+def HW6_get_single_post_query_age(post_id):
+	key = 'POST-%s' %  post_id
+	return HW6_get_query_age(key)
+
+def HW6_clear_all_cache():
+	flush()
+	AGE.clear()
+		
+
+#return True after setting the data
+def set(key, value):
+	CACHE[key] = value
+	return True
+
+#return the value for key
+def get(key):
+    return CACHE.get(key)
+
+#delete key from the cache
+def delete(key):
+	if key in CACHE:
+		del CACHE[key]
+
+#clear the entire cache
+def flush():
+	CACHE.clear()
+
+#return a tuple of (value, h), where h is hash of the value. a simple hash
+#we can use here is hash(repr(val))
+def gets(key):
+	val = get(key)
+	if val:
+		return val, hash(repr(val))
+
+# set key = value and return True if cas_unique matches the hash of the value
+# already in the cache. if cas_unique does not match the hash of the value in
+# the cache, don't set anything and return False.
+def cas(key, value, cas_unique):
+	r = gets(key)
+	if r is None:
+		return set(key, value)
+	else:
+		v, h = r
+		if h == cas_unique:
+			return set(key, value)
+		else:
+			return False
 			
+class HW6ClearCacheHandler(Handler):
+	def get(self):
+		HW6_clear_all_cache()
+		self.redirect("/blog")
 	
+
 app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/unit02_hw_1_rot13', Unit02HW1),
 							   ('/unit02_hw_2_signup', Unit02HW2),
@@ -596,5 +712,6 @@ app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/blog/login', HW4SignInHandler),
 							   ('/blog/logout', HW4SignOutHandler),
 							   ('/blog/.json', HW5BlogPageJSONHandler),
-							   ('/blog/([0-9]+).json', HW5PostJSONHandler)],
+							   ('/blog/([0-9]+).json', HW5PostJSONHandler),
+							   ('/blog/flush', HW6ClearCacheHandler)],
                               debug=True)

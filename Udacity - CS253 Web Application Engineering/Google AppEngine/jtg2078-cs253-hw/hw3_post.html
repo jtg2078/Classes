@@ -7,37 +7,38 @@
 </head>
 
 <body>
-  <a href="/blog" class="main-title">
-    Cactuarj's Notepad
-  </a>
+	<a href="/blog" class="main-title">
+		Cactuarj's Notepad
+	</a>
 
-  <div class="login-area">
-    
-    
-  </div>
+	<div class="login-area">
 
-  <div id="content">
+	</div>
+
+	<div id="content">
   
-  <div class="post">
-  <div class="post-heading">
-    <a href="{{post_id}}" class="post-title">
-      {{subject}}
-    </a>
+		<div class="post">
+			<div class="post-heading">
+				<a href="{{post_id}}" class="post-title">
+					{{subject}}
+				</a>
 
-    <div class="post-date">
-      {{created.strftime("%b %d, %Y %I:%M %p")}}
-    </div>
-  </div>
+				<div class="post-date">
+					{{created.strftime("%b %d, %Y %I:%M %p")}}
+				</div>
+			</div>
 
-  <div class="post-content">
-    {{content}}
-  </div>
-</div>
+			<div class="post-content">
+				{{content}}
+			</div>
+	
+		</div>
 
-  <div class="age">
-  </div>
-
-  </div>
+		<div class="age">
+			queried {{age}} seconds ago
+		</div >
+		
+	</div>
 </body>
 
 </html>
