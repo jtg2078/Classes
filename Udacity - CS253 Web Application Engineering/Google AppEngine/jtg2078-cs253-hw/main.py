@@ -262,7 +262,11 @@ class Unit02HW2(webapp2.RequestHandler):
 				is_valid = False;
 		
 		if is_valid:
-			self.redirect("/welcome?username=%s" % user_username)
+			link_from = self.request.get('from')
+			if link_from:
+				self.redirect("/wiki/_edit/%s" % link_from)
+			else:
+				self.redirect("/welcome?username=%s" % user_username)
 		else:
 			self.response.out.write(self.write_form(info))
 			
@@ -471,7 +475,13 @@ class HW4SignUpHandler(Handler):
 			user_id = str(user.key().id())
 			hash = make_secure_val(user_id)
 			self.response.headers.add_header('Set-Cookie', 'user_id=%s; Path=/' % (hash))
-			self.redirect("/blog/welcome")
+			
+			link_from = self.request.get('from')
+			if link_from:
+				self.redirect("/wiki/_edit%s" % link_from)
+			else:
+				self.redirect("/blog/welcome")
+			
 		else:
 			self.render_front(user_username, '', '', user_email, username_error, password_error, verify_error,  email_error)
 	
@@ -697,7 +707,101 @@ class HW6ClearCacheHandler(Handler):
 	def get(self):
 		HW6_clear_all_cache()
 		self.redirect("/blog")
+		
+		
+class WikiEntry(db.Model):
+	subject = db.StringProperty(required = True)
+	content = db.TextProperty(required = True)
+	created = db.DateTimeProperty(auto_now_add = True)
 	
+def HW7_get_wiki_entry(entry_subject):
+	key = 'WIKIENTRY-%s' %  entry_subject
+	result = gets(key)
+	if result:
+		entry, hash = result
+		logging.error('cache hit for get single wiki entry for subject %s' % entry_subject)
+		return entry
+	else:
+		q = db.Query(WikiEntry)
+		q.filter('subject =', entry_subject)
+		for entry in q:
+			set(key, entry)
+			logging.error('db hit for get single wiki entry for subject %s' % entry_subject)
+			return entry
+		return None
+
+def HW7_update_wiki_entry(entry_subject):
+	key = 'WIKIENTRY-%s' %  entry_subject
+	result = gets(key)
+	if result:
+		q = db.Query(WikiEntry)
+		q.filter('subject =', entry_subject)
+		for entry in q:
+			set(key, entry)
+			logging.error('db hit for update single wiki entry for subject %s' % entry_subject)
+			return
+		
+		
+class HW7WikiEntryHandler(Handler):
+	
+	def render_front(self, subject='', content='', is_logged_in=False):
+		self.render('hw7_wiki_entry.html', subject = subject, content = content, is_logged_in = is_logged_in)
+		
+	def get(self, subject):
+		entry = HW7_get_wiki_entry(subject)
+		
+		hash = self.request.cookies.get('user_id')
+		is_logged_in = check_secure_val(hash)
+		
+		if entry:
+			self.render_front(entry.subject, entry.content, is_logged_in)
+		else:
+			self.redirect("/wiki/_edit/" + subject)
+		
+
+class HW7WikiEntryEditHandler(Handler):
+	
+	def render_front(self, subject='', content='', is_logged_in=False, error=''):
+		self.render('hw7_wiki_entry_edit.html', subject = subject, content = content, is_logged_in = is_logged_in, error = error)
+	
+	def get(self, subject):
+		# check to see if the page exist or not
+		# if yes
+		#	if signed-in
+		#		load the page and show edit if user cookie is set(signed-in)
+		#	if not sign-in
+		#		load the page without edit link
+		# if no
+		#	if signed-in
+		#		redirect to post form
+		#	if not
+		#		
+		hash = self.request.cookies.get('user_id')
+		is_logged_in = check_secure_val(hash)
+		
+		if is_logged_in:
+			self.render_front(subject, '', is_logged_in)
+		else:
+			logging.error('redirect sign from %s' % subject)
+			self.redirect("/wiki/signup?from=" + subject)
+	
+	def post(self, subject):
+		content = self.request.get('content')
+		
+		hash = self.request.cookies.get('user_id')
+		is_logged_in = check_secure_val(hash)
+		
+		if subject and content:
+			entry = WikiEntry(subject = subject, content = content)
+			entry.put()
+			HW7_update_wiki_entry(subject)
+			self.redirect("/wiki/_edit/" + subject)
+		else:
+			error = 'content cannot be blank'
+			self.render_front(subject, content, is_logged_in, error)
+	
+	
+PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 
 app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/unit02_hw_1_rot13', Unit02HW1),
@@ -712,5 +816,10 @@ app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/blog/logout', HW4SignOutHandler),
 							   ('/blog/.json', HW5BlogPageJSONHandler),
 							   ('/blog/([0-9]+).json', HW5PostJSONHandler),
-							   ('/blog/flush', HW6ClearCacheHandler)],
+							   ('/blog/flush', HW6ClearCacheHandler),
+							   ('/wiki/login', HW4SignInHandler),
+							   ('/wiki/logout', HW4SignOutHandler),
+							   ('/wiki/signup', HW4SignUpHandler),
+							   ('/wiki/_edit' + PAGE_RE, HW7WikiEntryEditHandler),
+							   ('/wiki' + PAGE_RE, HW7WikiEntryHandler)],
                               debug=True)

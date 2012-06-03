@@ -1,0 +1,329 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> r
+Rule 1     r -> regex
+Rule 2     regex -> regex regex
+Rule 3     regex -> <empty>
+Rule 4     regex -> CHAR
+Rule 5     regex -> regex STAR
+Rule 6     regex -> regex OR regex
+Rule 7     regex -> LPAREN regex RPAREN
+
+Terminals, with rules where they appear
+
+CHAR                 : 4
+LPAREN               : 7
+OR                   : 6
+RPAREN               : 7
+STAR                 : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+r                    : 0
+regex                : 1 2 2 5 6 6 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . r
+    (1) r -> . regex
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    STAR            reduce using rule 3 (regex -> .)
+    OR              reduce using rule 3 (regex -> .)
+    $end            reduce using rule 3 (regex -> .)
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 1
+    r                              shift and go to state 3
+
+state 1
+
+    (1) r -> regex .
+    (2) regex -> regex . regex
+    (5) regex -> regex . STAR
+    (6) regex -> regex . OR regex
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 1 (r -> regex .)
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    $end            reduce using rule 1 (r -> regex .)
+    STAR            shift and go to state 6
+    OR              shift and go to state 7
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! STAR            [ reduce using rule 3 (regex -> .) ]
+  ! OR              [ reduce using rule 3 (regex -> .) ]
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+  ! $end            [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 5
+
+state 2
+
+    (4) regex -> CHAR .
+
+    STAR            reduce using rule 4 (regex -> CHAR .)
+    OR              reduce using rule 4 (regex -> CHAR .)
+    CHAR            reduce using rule 4 (regex -> CHAR .)
+    LPAREN          reduce using rule 4 (regex -> CHAR .)
+    $end            reduce using rule 4 (regex -> CHAR .)
+    RPAREN          reduce using rule 4 (regex -> CHAR .)
+
+
+state 3
+
+    (0) S' -> r .
+
+
+
+state 4
+
+    (7) regex -> LPAREN . regex RPAREN
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    RPAREN          reduce using rule 3 (regex -> .)
+    STAR            reduce using rule 3 (regex -> .)
+    OR              reduce using rule 3 (regex -> .)
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 8
+
+state 5
+
+    (2) regex -> regex regex .
+    (2) regex -> regex . regex
+    (5) regex -> regex . STAR
+    (6) regex -> regex . OR regex
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! reduce/reduce conflict for CHAR resolved using rule 2 (regex -> regex regex .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 2 (regex -> regex regex .)
+  ! reduce/reduce conflict for $end resolved using rule 2 (regex -> regex regex .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 2 (regex -> regex regex .)
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    $end            reduce using rule 2 (regex -> regex regex .)
+    RPAREN          reduce using rule 2 (regex -> regex regex .)
+    STAR            shift and go to state 6
+    OR              shift and go to state 7
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! STAR            [ reduce using rule 2 (regex -> regex regex .) ]
+  ! OR              [ reduce using rule 2 (regex -> regex regex .) ]
+  ! CHAR            [ reduce using rule 2 (regex -> regex regex .) ]
+  ! LPAREN          [ reduce using rule 2 (regex -> regex regex .) ]
+  ! STAR            [ reduce using rule 3 (regex -> .) ]
+  ! OR              [ reduce using rule 3 (regex -> .) ]
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+  ! $end            [ reduce using rule 3 (regex -> .) ]
+  ! RPAREN          [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 5
+
+state 6
+
+    (5) regex -> regex STAR .
+
+    STAR            reduce using rule 5 (regex -> regex STAR .)
+    OR              reduce using rule 5 (regex -> regex STAR .)
+    CHAR            reduce using rule 5 (regex -> regex STAR .)
+    LPAREN          reduce using rule 5 (regex -> regex STAR .)
+    $end            reduce using rule 5 (regex -> regex STAR .)
+    RPAREN          reduce using rule 5 (regex -> regex STAR .)
+
+
+state 7
+
+    (6) regex -> regex OR . regex
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    STAR            reduce using rule 3 (regex -> .)
+    OR              reduce using rule 3 (regex -> .)
+    $end            reduce using rule 3 (regex -> .)
+    RPAREN          reduce using rule 3 (regex -> .)
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 9
+
+state 8
+
+    (7) regex -> LPAREN regex . RPAREN
+    (2) regex -> regex . regex
+    (5) regex -> regex . STAR
+    (6) regex -> regex . OR regex
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for RPAREN resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    RPAREN          shift and go to state 10
+    STAR            shift and go to state 6
+    OR              shift and go to state 7
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! STAR            [ reduce using rule 3 (regex -> .) ]
+  ! OR              [ reduce using rule 3 (regex -> .) ]
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+  ! RPAREN          [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 5
+
+state 9
+
+    (6) regex -> regex OR regex .
+    (2) regex -> regex . regex
+    (5) regex -> regex . STAR
+    (6) regex -> regex . OR regex
+    (2) regex -> . regex regex
+    (3) regex -> .
+    (4) regex -> . CHAR
+    (5) regex -> . regex STAR
+    (6) regex -> . regex OR regex
+    (7) regex -> . LPAREN regex RPAREN
+
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! reduce/reduce conflict for CHAR resolved using rule 3 (regex -> .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 3 (regex -> .)
+  ! reduce/reduce conflict for $end resolved using rule 3 (regex -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 3 (regex -> .)
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    STAR            shift and go to state 6
+    OR              shift and go to state 7
+    $end            reduce using rule 3 (regex -> .)
+    RPAREN          reduce using rule 3 (regex -> .)
+    CHAR            shift and go to state 2
+    LPAREN          shift and go to state 4
+
+  ! STAR            [ reduce using rule 6 (regex -> regex OR regex .) ]
+  ! OR              [ reduce using rule 6 (regex -> regex OR regex .) ]
+  ! CHAR            [ reduce using rule 6 (regex -> regex OR regex .) ]
+  ! LPAREN          [ reduce using rule 6 (regex -> regex OR regex .) ]
+  ! $end            [ reduce using rule 6 (regex -> regex OR regex .) ]
+  ! RPAREN          [ reduce using rule 6 (regex -> regex OR regex .) ]
+  ! STAR            [ reduce using rule 3 (regex -> .) ]
+  ! OR              [ reduce using rule 3 (regex -> .) ]
+  ! CHAR            [ reduce using rule 3 (regex -> .) ]
+  ! LPAREN          [ reduce using rule 3 (regex -> .) ]
+
+    regex                          shift and go to state 5
+
+state 10
+
+    (7) regex -> LPAREN regex RPAREN .
+
+    STAR            reduce using rule 7 (regex -> LPAREN regex RPAREN .)
+    OR              reduce using rule 7 (regex -> LPAREN regex RPAREN .)
+    CHAR            reduce using rule 7 (regex -> LPAREN regex RPAREN .)
+    LPAREN          reduce using rule 7 (regex -> LPAREN regex RPAREN .)
+    $end            reduce using rule 7 (regex -> LPAREN regex RPAREN .)
+    RPAREN          reduce using rule 7 (regex -> LPAREN regex RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for CHAR in state 0 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 0 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 1 resolved as shift
+WARNING: shift/reduce conflict for OR in state 1 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 1 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 1 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 4 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 4 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 5 resolved as shift
+WARNING: shift/reduce conflict for OR in state 5 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 5 resolved as shift
+WARNING: shift/reduce conflict for OR in state 5 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 5 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 5 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 7 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 7 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 8 resolved as shift
+WARNING: shift/reduce conflict for OR in state 8 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 8 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 8 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 8 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 9 resolved as shift
+WARNING: shift/reduce conflict for OR in state 9 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 9 resolved as shift
+WARNING: shift/reduce conflict for OR in state 9 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 9 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 9 resolved as shift
+WARNING: reduce/reduce conflict in state 1 resolved using rule (r -> regex)
+WARNING: rejected rule (regex -> <empty>) in state 1
+WARNING: reduce/reduce conflict in state 5 resolved using rule (regex -> regex regex)
+WARNING: rejected rule (regex -> <empty>) in state 5
+WARNING: reduce/reduce conflict in state 9 resolved using rule (regex -> <empty>)
+WARNING: rejected rule (regex -> regex OR regex) in state 9
+WARNING: Rule (regex -> regex OR regex) is never reduced

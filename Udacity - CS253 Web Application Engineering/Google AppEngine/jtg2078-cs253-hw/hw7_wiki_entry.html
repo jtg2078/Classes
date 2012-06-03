@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Cactuarj's wiki</title>
+</head>
+
+<body>
+
+  <div class="login-area">
+
+	{% if is_logged_in %}
+	    <a class="login-link" href="wiki/_edit/{{subject}}">edit</a>
+		|
+		<a class="login-link" href="wiki/logout">logout</a>
+	{% else %}
+	    <a class="login-link" href="wiki/login">login</a>
+	    |
+	    <a class="login-link" href="wiki/signup">signup</a>
+	{% endif %}
+    
+  </div>
+
+	<div class="post-content">
+					{{content}}
+	</div>
+
+  </body>
+
+</html>
