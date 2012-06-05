@@ -478,7 +478,7 @@ class HW4SignUpHandler(Handler):
 			
 			link_from = self.request.get('from')
 			if link_from:
-				self.redirect("/wiki/_edit%s" % link_from)
+				self.redirect("/wiki/%s" % link_from)
 			else:
 				self.redirect("/blog/welcome")
 			
@@ -537,7 +537,13 @@ class HW4SignInHandler(Handler):
 					user_id = str(user.key().id())
 					hash = make_secure_val(user_id)
 					self.response.headers.add_header('Set-Cookie', 'user_id=%s; Path=/' % (hash))
-					self.redirect("/blog/welcome")
+					
+					link_from = self.request.get('from')
+					if link_from:
+						self.redirect("/wiki/%s" % link_from)
+					else:
+						self.redirect("/blog/welcome")
+					
 				else:
 					self.render_front(username, error)
 			else:
@@ -739,7 +745,13 @@ def HW7_update_wiki_entry(entry_subject):
 		for entry in q:
 			set(key, entry)
 			logging.error('db hit for update single wiki entry for subject %s' % entry_subject)
+			logging.error('content %s' % entry.content)
 			return
+			
+class HW7SignOutHandler(Handler):
+	def get(self):
+		self.response.headers.add_header('Set-Cookie', 'user_id=%s; Path=/' % (''))
+		self.redirect("/wiki/signup")
 		
 		
 class HW7WikiEntryHandler(Handler):
@@ -779,11 +791,16 @@ class HW7WikiEntryEditHandler(Handler):
 		hash = self.request.cookies.get('user_id')
 		is_logged_in = check_secure_val(hash)
 		
+		entry = HW7_get_wiki_entry(subject)
+		content = ''
+		if entry:
+			content = entry.content
+		
 		if is_logged_in:
-			self.render_front(subject, '', is_logged_in)
+			self.render_front(subject, content, is_logged_in)
 		else:
 			logging.error('redirect sign from %s' % subject)
-			self.redirect("/wiki/signup?from=" + subject)
+			self.redirect("/wiki/signup?from=_edit/" + subject)
 	
 	def post(self, subject):
 		content = self.request.get('content')
@@ -791,18 +808,29 @@ class HW7WikiEntryEditHandler(Handler):
 		hash = self.request.cookies.get('user_id')
 		is_logged_in = check_secure_val(hash)
 		
+		entryToUpdate = None
+		q = db.Query(WikiEntry)
+		q.filter('subject =', subject)
+		for entry in q:
+			entryToUpdate = entry
+			break
+		
 		if subject and content:
-			entry = WikiEntry(subject = subject, content = content)
-			entry.put()
+			if entryToUpdate:
+				entryToUpdate.content = content
+				entryToUpdate.put()
+			else:
+				entryToUpdate = WikiEntry(subject = subject, content = content)
+				entryToUpdate.put()
 			HW7_update_wiki_entry(subject)
-			self.redirect("/wiki/_edit/" + subject)
+			self.redirect("/wiki/" + subject)
 		else:
 			error = 'content cannot be blank'
 			self.render_front(subject, content, is_logged_in, error)
 	
 	
-PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
-
+#PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
+PAGE_RE = r'((?:[a-zA-Z0-9_-]+/?)*)'
 app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/unit02_hw_1_rot13', Unit02HW1),
 							   ('/unit02_hw_2_signup', Unit02HW2),
@@ -818,8 +846,8 @@ app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/blog/([0-9]+).json', HW5PostJSONHandler),
 							   ('/blog/flush', HW6ClearCacheHandler),
 							   ('/wiki/login', HW4SignInHandler),
-							   ('/wiki/logout', HW4SignOutHandler),
+							   ('/wiki/logout', HW7SignOutHandler),
 							   ('/wiki/signup', HW4SignUpHandler),
-							   ('/wiki/_edit' + PAGE_RE, HW7WikiEntryEditHandler),
-							   ('/wiki' + PAGE_RE, HW7WikiEntryHandler)],
+							   ('/wiki/_edit/' + PAGE_RE, HW7WikiEntryEditHandler),
+							   ('/wiki/' + PAGE_RE, HW7WikiEntryHandler)],
                               debug=True)
