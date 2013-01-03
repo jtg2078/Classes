@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>many thanks to instructor pada</title>
+	<!-- <script id='gistScript' type="text/javascript" src="https://gist.github.com/3283157.js"></script> -->
+	<!-- looks like css only gets to apply once? what about dynamic added elements? QQ-->
+	<style type='text/css'>
+		span.noteSpan{
+			text-decoration:underline;
+			color:blue;
+		}
+	</style>
+	<script type='text/javascript'>
+		function loadGist(classNo)
+		{
+			classNo = classNo - 1;
+			var idArray = new Array('3283157',
+									'3293449',
+									'3302414',
+									'3312772',
+									'3338485',
+									'3347730',
+									'3357894',
+									'3368354',
+									'3377224',
+									'3402210');
+			
+			if(classNo >= idArray.length)
+				return;
+
+			// looks like the gist/xxx.js is using document.write method
+			// it seems that i need refresh the page by manually invoking document.write
+		    // in order for it to work
+		    // so i'll just write back the header
+		    var header = document.getElementById("header");
+		    if(header)
+		    {
+		    	document.body.innerHTML = '';
+		    	// because the innerHTML does not include itself! bummer
+		    	var wrapper = '<div id="header">' + header.innerHTML + '</div>';
+		    	document.write(wrapper);
+
+		    	// adjust the elements in header
+		    	var title = document.getElementById("title");
+		    	title.innerHTML = "class " + (classNo + 1) + " note";
+
+		    	var link = document.getElementById("permaLink");
+		    	link.href = "https://gist.github.com/" + idArray[classNo];
+		    	link.innerHTML = "https://gist.github.com/" + idArray[classNo];
+		    }
+
+			var currentElement = document.getElementById('gistScript');
+			if(currentElement)
+			{
+				var newElement = document.createElement("script");
+				newElement.type = "text/javascript";
+		    	newElement.id = "gistScript";
+		    	// e.g. https://gist.github.com/733951.js
+		    	newElement.src = "https://gist.github.com/" + idArray[classNo] + ".js";
+
+		    	var head = document.getElementsByTagName("head")[0];
+		    	head.replaceChild(newElement, currentElement);
+			}
+			else
+			{
+				currentElement = document.createElement("script");
+				currentElement.type = "text/javascript";
+		    	currentElement.id = "gistScript";
+		    	// e.g. https://gist.github.com/733951.js
+		    	currentElement.src = "https://gist.github.com/" + idArray[classNo] + ".js";
+
+		    	var head = document.getElementsByTagName("head")[0];
+		    	head.appendChild(currentElement);
+		    }
+
+		    
+		}
+	</script>
+	<script type='text/javascript'>
+		function init()
+		{
+
+		}
+	</script>
+</head>
+<body onload="loadGist(1);">
+	<div id="header">
+		<h1 id='title'>class 1 note</h1>
+		<div><a id='permaLink' href='https://gist.github.com/3283157'>https://gist.github.com/3283157</a><div>
+		<br>
+		<table border="1">
+			<tr>
+				<td><span onclick="loadGist(1);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 1</span></td>
+				<td><span onclick="loadGist(2);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 2</span></td>
+				<td><span onclick="loadGist(3);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 3</span></td>
+				<td><span onclick="loadGist(4);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 4</span></td>
+				<td><span onclick="loadGist(5);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 5</span></td>
+				<td><span onclick="loadGist(6);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 6</span></td>
+				<td><span onclick="loadGist(7);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 7</span></td>
+				<td><span onclick="loadGist(8);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 8</span></td>
+				<td><span onclick="loadGist(9);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 9</span></td>
+				<td><span onclick="loadGist(10);" class="noteSpan" style="text-decoration:underline;color:blue;cursor:pointer;">class 10</span></td>
+			</tr>
+		</table>
+		<br>
+	</div>
+</body>
+</html>

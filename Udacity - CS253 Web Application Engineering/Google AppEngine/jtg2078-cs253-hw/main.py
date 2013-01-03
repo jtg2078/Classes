@@ -1,3 +1,5 @@
+# coding: utf-8
+
 #!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
@@ -122,6 +124,27 @@ unit02_hw2_form = """
     </form>
   </body>
 
+</html>
+"""
+
+js_class_bio = """
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS class 個人簡介</title>
+	<meta charset='UTF-8' />
+</head>
+<body>
+	<p>彭老師好～</p>
+
+	<p>我叫凌子軒, 也可以叫我Jason. 07年我從SUNY@Stonybrook年畢業(Major 是 Comp Sci.) 之後我做了四年的UI programmer(mfc/winform/wpf) 去年開始轉戰iOS app development. 從這個月開始我離開了上班打卡制,下班責任制的生活, 成為soho一族, 這也讓我有幸可以來上這堂課XD</p>
+
+	<p>我一直對網路技術很有興趣,也在網路上了一些網路相關的課程, 目前在用python + webapp2 + GAE + amazon s3, 來架網站和 web services.</p>
+
+	<p>但對於網頁前端技術像html, css, js, 尤其是 dom 的結構一直沒有弄清楚, 希望可以透過這堂課來做一個更系統性的學習.</p>
+
+	<p>謝謝</p>
+</body>
 </html>
 """
 
@@ -827,6 +850,108 @@ class HW7WikiEntryEditHandler(Handler):
 		else:
 			error = 'content cannot be blank'
 			self.render_front(subject, content, is_logged_in, error)
+			
+
+class JSClassBioHandler(webapp2.RequestHandler):
+	def get(self):
+		self.response.out.write(js_class_bio)
+		
+class JSClassCheckAccountHandler(webapp2.RequestHandler):
+	def get(self):
+		username = self.request.get('username')
+		if username == "":
+			self.response.headers.add_header('result', "-1")
+		else:
+			found = False;
+			exists = ["east", 
+			"west", 
+			"south", 
+			"north", 
+			"google", 
+			"yahoo", 
+			"teacher", "student"]
+			for name in exists:
+				if username == name:
+					found = True
+					break
+			if found:
+				self.response.headers.add_header('result', "1")
+			else:
+				self.response.headers.add_header('result', "0")
+		self.response.out.write("")
+
+class JSClassGetBrandHandler(webapp2.RequestHandler):
+	def get(self):
+		country = self.request.get('country')
+		result = ""
+		if country == "":
+			result = "您給的參數錯誤"
+		elif country == "taiwan":
+			result = "<h3>台灣品牌列表</h3><ul><li>趨勢科技</li><li>宏碁電腦</li><li>巨大機械</li><li>華碩電腦</li><li>訊連科技</li></ul>"
+		elif country == "america":
+			result = "<h3>美國品牌列表</h3><ul><li>Coca Cola</li><li>Microsoft</li><li>McDonalt's</li><li>Google</li><li>AT&T</li></ul>"
+		else:
+			result = "無相關資料"
+		self.response.out.write(result)
+		
+testJAJAXPage = """
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>class 8</title>
+		<meta content="text/html; charset=utf-8">
+		<script type='text/javascript'>
+			function getBrand()
+			{
+				var source = "getBrand";
+				var country = document.getElementById("country");
+				var args = "country=" + country.value;
+				
+				var req = new XMLHttpRequest();
+				req.open("get", source + "?" + args, true);
+				req.onreadystatechange = function()
+				{
+					if(this.readyState == 4)
+					{
+						if(this.status == 200)
+						{
+							var content = document.getElementById("content");
+							content.innerHTML = this.responseText;
+						}
+						else
+						{
+							alert("error! server status " + this.status);
+						}
+					}
+				}
+				req.send(null);
+			}
+		</script>
+	<body>
+		<h3>Get Brand</h3>
+		<div>
+			<input type='text' id="country" />
+			<input onclick="getBrand();" type='button' value='submit' />
+		</div>
+		<div id="content"></div>
+		<!--
+		<form method="get" action="getBrand">
+			<input type="text" name="country" />
+			<input type="submit" value="search" />
+		</form>
+		-->
+	</body>
+</html>
+"""
+
+class JSClassTestAJAXHandler(webapp2.RequestHandler):
+	def get(self):
+		self.response.out.write(testJAJAXPage)
+		
+class JSClassAllNotesHandler(Handler):
+	def get(self):
+		self.render('js_class_all_notes.html')
+			
 	
 	
 #PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
@@ -849,5 +974,11 @@ app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/wiki/logout', HW7SignOutHandler),
 							   ('/wiki/signup', HW4SignUpHandler),
 							   ('/wiki/_edit/' + PAGE_RE, HW7WikiEntryEditHandler),
-							   ('/wiki/' + PAGE_RE, HW7WikiEntryHandler)],
+							   ('/wiki/' + PAGE_RE, HW7WikiEntryHandler),
+							   ('/jsclass/bio', JSClassBioHandler),
+							   ('/jsclass/checkAccount', JSClassCheckAccountHandler),
+							   ('/jsclass/getBrand', JSClassGetBrandHandler),
+							   ('/jsclass/ajax', JSClassTestAJAXHandler),
+							   ('/jsclass/allNotes', JSClassAllNotesHandler),
+							  ],
                               debug=True)
