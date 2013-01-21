@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".course-quiz-latex-button").click(function(){var e=$(this),t=e.prev("textarea.course-quiz-input").val(),i=e.next(".course-quiz-latex");$.post("latex",{str:t},function(e){var t=jQuery.parseJSON(e);t.success?(i.text("Your submission is equivalent to: $$"+t.message+"$$"),loadOrRefreshMathJax()):i.text("Error: "+t.message)})})});

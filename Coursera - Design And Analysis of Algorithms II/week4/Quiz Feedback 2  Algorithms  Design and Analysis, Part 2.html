@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://class.coursera.org/algo2-2012-001/quiz/feedback?submission_id=204682 -->
+<html lang="en-US" class="wf-crimsontext-n4-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Quiz Feedback | Algorithms: Design and Analysis, Part 2</title>
+<link rel="stylesheet" href="https://dt5zaw6a98blc.cloudfront.net/site-static/46c8557932104787e8d0e3d4d0ecb9c43858767c/css/spark.main.css">
+
+<link rel="icon" href="https://spark-public.s3.amazonaws.com/algo2/static/images/favicon.ico">
+
+<script type="text/javascript" src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/MathJax.js"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text:400&subset=latin"><style type="text/css"></style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0 !important; padding: 0 !important; margin: 0 !important; vertical-align: 0 !important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap ! important}
+.MathJax img {display: inline ! important; float: none ! important}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block; overflow: hidden; width: 1px; height: 60ex}
+.MathJax .MathJax_EmBox {display: block; overflow: hidden; width: 1px; height: 60em}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuTitle {background-color: #CCCCCC; margin: -5px 0 0 0; text-align: center; font-style: italic; font-size: 80%; color: #444444; padding: 2px 0; overflow: hidden}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+
+<body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <a href="https://class.coursera.org/algo2-2012-001/quiz/feedback?submission_id=204682#course-page-content" class="hidden">Skip Navigation</a>
+    <div class="hidden">
+        This page features MathJax technology to render mathematical formulae.
+        If you are using a screen reader, please visit <a href="http://www.dessci.com/en/products/mathplayer/">MathPlayer</a> to download the plugin for your browser. Please note that this is an Internet Explorer-only plugin at this time.
+    </div>
+
+    <h1 class="hidden">Algorithms: Design and Analysis, Part 2</h1>
+
+    
+    
+<div class="course-topbar container-fluid">
+
+    <div class="row-fluid">
+        
+        <div class="span3">
+          <a href="https://www.coursera.org/" class="course-topbar-logo"></a>
+        </div>
+
+        <div class="course-topbar-nav-container span9" style="float:right;">
+            <h2 class="hidden">Top Navigation Bar</h2>
+
+            <ul class="course-topbar-nav-list">
+                <li class="course-topbar-nav-list-item"><a href="https://www.coursera.org/courses/" target="_new">Courses</a></li>
+
+                
+                <li class="course-topbar-nav-list-item" data-popup="#course-topbar-aboutus" data-popup-bind-open="mouseenter" data-popup-direction="se" data-popup-close="" style="cursor:pointer;">
+                    <a>About <i class="icon-caret-down"></i></a>
+                </li>
+
+                                
+                <li class="course-topbar-nav-list-item" data-popup="#course-topbar-my" data-popup-bind-open="mouseenter" data-popup-close="" style="cursor:pointer;" data-popup-direction="se">
+                    <a data-user-id="20169">Jason Ling <i class="icon-caret-down"></i></a>
+                </li>
+                
+                            </ul>
+        </div>
+    </div>
+
+    <div id="course-topbar-aboutus" class="course-topbar-sublist">
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/about/jobs" target="_new">Jobs</a>
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/about/team" target="_new">Team</a>
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/about/contact" target="_new">Contact Us</a>
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/about/" target="_new">About Us</a>
+    </div>
+
+    <div id="course-topbar-my" class="course-topbar-sublist">
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/" target="_new">Courses</a>
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/account/profile" target="_new">Profile</a>
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/account/records" target="_new">Course Records</a>
+        <a class="course-topbar-sublist-item" href="https://www.coursera.org/account/settings" target="_new">Settings</a>
+        <a class="course-topbar-sublist-item" href="https://class.coursera.org/algo2-2012-001/class/preferences">Course Preferences</a>
+        <a class="course-topbar-sublist-item" href="https://class.coursera.org/algo2-2012-001/auth/logout">Logout</a>
+    </div>
+
+</div>
+
+
+
+
+<div class="course-topbanner" style="background:#2f2f2f repeat-x url(&#39;https://s3.amazonaws.com/coursera/universities/stanford/top-banner-background.png&#39;)">
+    <div class="course-topbanner-logo-container">
+        <a href="https://class.coursera.org/algo2-2012-001/class/index">
+            <div>
+                <div>
+                    <img src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/top-banner.png">
+                </div>
+                <div class="course-topbanner-logo-image" style="position:absolute;top:47px;left:17px;height:68px;width:120px;">
+                    <div style="background-position:-5px 0px;background-size:130px;height:68px;width:120px;background-image:url(&#39;https://s3.amazonaws.com/coursera/topics/algo2/small-icon.hover.png&#39;)">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="course-topbanner-logo-name" style="position:absolute;top:87px;left:155px;">
+                <span>Algorithms: Design and Analysis, Part 2</span>
+            </div>
+        </a>
+    </div>
+    <div class="course-topbanner-info">
+        <div class="course-topbanner-instructor">Tim Roughgarden</div>
+        <div class="course-topbanner-time">Stanford University</div>
+    </div>
+</div>
+    
+        <div class="container-fluid" style="position:relative;">
+        <div class="row-fluid">
+            <div id="course-page-sidebar">
+                <div class="course-navbar-container">
+	<h2 class="hidden">Side Navigation Bar</h2>
+<ul class="course-navbar-list">
+		
+	<li class="course-navbar-item">
+								<a href="https://class.coursera.org/algo2-2012-001/class/index">
+				
+				Home							</a>
+						</li>
+	
+		
+	<li class="course-navbar-item">
+								<a href="https://class.coursera.org/algo2-2012-001/wiki/view?page=syllabus">
+				
+				Syllabus							</a>
+						</li>
+	
+		
+	<li class="course-navbar-item">
+								<a href="https://class.coursera.org/algo2-2012-001/wiki/view?page=logistics">
+				
+				Course Logistics + Assessment							</a>
+						</li>
+	
+		
+	<li class="course-navbar-item">
+								<a href="https://class.coursera.org/algo2-2012-001/lecture/index">
+				
+				Video Lectures							</a>
+						</li>
+	
+		
+	<li class="course-navbar-item active">
+								<a href="https://class.coursera.org/algo2-2012-001/quiz/index">
+				
+				Assignments							</a>
+						</li>
+	
+		
+	<li class="course-navbar-item">
+								<a href="https://class.coursera.org/algo2-2012-001/wiki/view?page=theoryproblems">
+				
+				Theory (Optional) Problems							</a>
+						</li>
+	
+		
+	<li class="course-navbar-item">
+								<a href="https://class.coursera.org/algo2-2012-001/forum/index">
+				
+				Discussion Forums							</a>
+						</li>
+	
+	
+		<li class="course-navbar-item">
+		<a href="https://share.coursera.org/wiki/index.php/algo2:Main" target="_blank">
+			
+			Course Wiki
+			<span class="icon-share"></span>
+		</a>
+	</li>
+	</ul>
+
+</div>            </div>
+            <div id="course-page-content">
+                
+<h2>
+Feedback — Problem Set #4</h2>
+
+
+
+
+    
+
+<p class="course-quiz-feedback"> You submitted this quiz on <strong>Sun 20 Jan 2013 11:18 PM PST</strong>. You got a score of <strong>1.00</strong> out of <strong>5.00</strong>. </p>
+
+            <form method="post" id="quiz_form">
+    
+        <div class="course-quiz-question-body">
+<h3 class="course-quiz-question-number">Question 1</h3>
+<div class="course-quiz-question-text">Consider a directed graph with real-valued edge lengths and no negative-cost cycles.  Let <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-1-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-1"><span style="display: inline-block; position: relative; width: 7px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: STIXGeneral-Italic;">s</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">s</script> be a source vertex.   Assume that there is a unique shortest path from <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-2-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-4"><span style="display: inline-block; position: relative; width: 7px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family: STIXGeneral-Italic;">s</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-2">s</script> to every other vertex.  What can you say about the subgraph of <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-3-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-7"><span style="display: inline-block; position: relative; width: 12px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.8px 16800px 46.3px -8.1px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-8"><span class="mi" id="MathJax-Span-9" style="font-family: STIXGeneral-Italic;">G</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.5px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-3">G</script> that you get by taking the union of these shortest paths?  [Pick the strongest statement that is guaranteed to be true.]</div>
+<div class="course-quiz-options randomize"></div>
+<table class="table">
+<tbody><tr>
+<th>Your Answer</th>
+<th></th>
+<th>Score</th>
+<th>Explanation</th>
+</tr>
+<tr>
+<td>
+<input class="course-quiz-input" type="radio" name="answer[ae9b836fd0e83b3f567e008fb4575c34][]" id="gensym_50fcebd3aedba" value="c8f45613c0945f38c0e058ef9301cfeb" checked="" disabled="">It has no strongly connected component with more than one vertex.</td>
+<td><span class="course-quiz-answer-incorrect" title="Incorrect" alt="Incorrect">✘</span></td>
+<td>0.00</td>
+<td>Yes, but more is true.</td>
+</tr>
+<tr>
+<td>Total</td>
+<td></td>
+<td>0.00 / 1.00</td>
+<td></td>
+</tr>
+</tbody></table>
+</div><div class="course-quiz-question-body">
+<h3 class="course-quiz-question-number">Question 2</h3>
+<div class="course-quiz-question-text">Consider the following optimization to the Bellman-Ford algorithm.  Given a graph <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-4-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-10"><span style="display: inline-block; position: relative; width: 75px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 49px -8.1px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-11"><span class="mi" id="MathJax-Span-12" style="font-family: STIXGeneral-Italic;">G</span><span class="mo" id="MathJax-Span-13" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">=</span><span class="mo" id="MathJax-Span-14" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">(</span><span class="mi" id="MathJax-Span-15" style="font-family: STIXGeneral-Italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 1.3px;"></span></span><span class="mo" id="MathJax-Span-16" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-17" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.4px;"></span></span><span class="mo" id="MathJax-Span-18" style="font-family: STIXGeneral-Regular;">)</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.3px; vertical-align: -4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-4">G=(V,E)</script> with real-valued edge lengths, we label the vertices <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-5-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-19"><span style="display: inline-block; position: relative; width: 134px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 49px -7.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-20"><span class="mi" id="MathJax-Span-21" style="font-family: STIXGeneral-Italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 1.3px;"></span></span><span class="mo" id="MathJax-Span-22" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">=</span><span class="mo" id="MathJax-Span-23" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">{</span><span class="mn" id="MathJax-Span-24" style="font-family: STIXGeneral-Regular;">1</span><span class="mo" id="MathJax-Span-25" style="font-family: STIXGeneral-Regular;">,</span><span class="mn" id="MathJax-Span-26" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">2</span><span class="mo" id="MathJax-Span-27" style="font-family: STIXGeneral-Regular;">,</span><span class="mn" id="MathJax-Span-28" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">3</span><span class="mo" id="MathJax-Span-29" style="font-family: STIXGeneral-Regular;">,</span><span class="mo" id="MathJax-Span-30" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">…</span><span class="mo" id="MathJax-Span-31" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">,</span><span class="mi" id="MathJax-Span-32" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">n</span><span class="mo" id="MathJax-Span-33" style="font-family: STIXGeneral-Regular;">}</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.5px; vertical-align: -4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-5">V = \{1,2,3,\ldots,n\}</script>.  The source vertex <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-6-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-34"><span style="display: inline-block; position: relative; width: 7px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-35"><span class="mi" id="MathJax-Span-36" style="font-family: STIXGeneral-Italic;">s</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-6">s</script> should be labeled "1", but the rest of the labeling can be arbitrary.  Call an edge <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-7-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-37"><span style="display: inline-block; position: relative; width: 69px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 49px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-38"><span class="mo" id="MathJax-Span-39" style="font-family: STIXGeneral-Regular;">(</span><span class="mi" id="MathJax-Span-40" style="font-family: STIXGeneral-Italic;">u</span><span class="mo" id="MathJax-Span-41" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-42" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span><span class="mo" id="MathJax-Span-43" style="font-family: STIXGeneral-Regular;">)</span><span class="mo" id="MathJax-Span-44" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">∈</span><span class="mi" id="MathJax-Span-45" style="font-family: STIXGeneral-Italic; padding-left: 5.3px;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.4px;"></span></span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.3px; vertical-align: -4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-7">(u,v) \in E</script> <i>forward</i> if <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-8-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-46"><span style="display: inline-block; position: relative; width: 39px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(31px 16800px 46.4px -8.3px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-47"><span class="mi" id="MathJax-Span-48" style="font-family: STIXGeneral-Italic;">u</span><span class="mo" id="MathJax-Span-49" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">&lt;</span><span class="mi" id="MathJax-Span-50" style="font-family: STIXGeneral-Italic; padding-left: 5.3px;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 11.4px; vertical-align: -1.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-8">u \lt v</script> and <i>backward</i> if <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-9-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-51"><span style="display: inline-block; position: relative; width: 39px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(31px 16800px 46.4px -8.3px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-52"><span class="mi" id="MathJax-Span-53" style="font-family: STIXGeneral-Italic;">u</span><span class="mo" id="MathJax-Span-54" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">&gt;</span><span class="mi" id="MathJax-Span-55" style="font-family: STIXGeneral-Italic; padding-left: 5.3px;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 11.4px; vertical-align: -1.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-9">u \gt v</script>.  In every odd iteration of the outer loop (i.e., when <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-10-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-56"><span style="display: inline-block; position: relative; width: 93px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.4px 16800px 48.4px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-57"><span class="mi" id="MathJax-Span-58" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-59" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">=</span><span class="mn" id="MathJax-Span-60" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">1</span><span class="mo" id="MathJax-Span-61" style="font-family: STIXGeneral-Regular;">,</span><span class="mn" id="MathJax-Span-62" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">3</span><span class="mo" id="MathJax-Span-63" style="font-family: STIXGeneral-Regular;">,</span><span class="mn" id="MathJax-Span-64" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">5</span><span class="mo" id="MathJax-Span-65" style="font-family: STIXGeneral-Regular;">,</span><span class="mo" id="MathJax-Span-66" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">.</span><span class="mo" id="MathJax-Span-67" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">.</span><span class="mo" id="MathJax-Span-68" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">.</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 15.9px; vertical-align: -3.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-10">i=1,3,5,...</script>), we visit the vertices in the order from 1 to <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-11-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-69"><span style="display: inline-block; position: relative; width: 9px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.8px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-70"><span class="mi" id="MathJax-Span-71" style="font-family: STIXGeneral-Italic;">n</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-11">n</script>.  In every even iteration of the outer loop (when <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-12-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-72"><span style="display: inline-block; position: relative; width: 93px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.5px 16800px 48.4px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-73"><span class="mi" id="MathJax-Span-74" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-75" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">=</span><span class="mn" id="MathJax-Span-76" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">2</span><span class="mo" id="MathJax-Span-77" style="font-family: STIXGeneral-Regular;">,</span><span class="mn" id="MathJax-Span-78" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">4</span><span class="mo" id="MathJax-Span-79" style="font-family: STIXGeneral-Regular;">,</span><span class="mn" id="MathJax-Span-80" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">6</span><span class="mo" id="MathJax-Span-81" style="font-family: STIXGeneral-Regular;">,</span><span class="mo" id="MathJax-Span-82" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">.</span><span class="mo" id="MathJax-Span-83" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">.</span><span class="mo" id="MathJax-Span-84" style="font-family: STIXGeneral-Regular; padding-left: 3.2px;">.</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 15.9px; vertical-align: -3.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-12">i=2,4,6,...</script>), we visit the vertices in the order from <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-13-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-85"><span style="display: inline-block; position: relative; width: 9px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.8px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-86"><span class="mi" id="MathJax-Span-87" style="font-family: STIXGeneral-Italic;">n</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-13">n</script> to 1.  In every odd iteration, we update the value of <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-14-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-88"><span style="display: inline-block; position: relative; width: 42px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.8px 16800px 48.6px -9.9px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-89"><span class="mi" id="MathJax-Span-90" style="font-family: STIXGeneral-Italic;">A</span><span class="mo" id="MathJax-Span-91" style="font-family: STIXGeneral-Regular;">[</span><span class="mi" id="MathJax-Span-92" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-93" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-94" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span><span class="mo" id="MathJax-Span-95" style="font-family: STIXGeneral-Regular;">]</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 15.8px; vertical-align: -3.6px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-14">A[i,v]</script> using only the forward edges of the form <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-15-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-96"><span style="display: inline-block; position: relative; width: 38px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 49px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-97"><span class="mo" id="MathJax-Span-98" style="font-family: STIXGeneral-Regular;">(</span><span class="mi" id="MathJax-Span-99" style="font-family: STIXGeneral-Italic;">w</span><span class="mo" id="MathJax-Span-100" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-101" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span><span class="mo" id="MathJax-Span-102" style="font-family: STIXGeneral-Regular;">)</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.3px; vertical-align: -4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-15">(w,v)</script>, using the <em>most recent</em> subproblem value for <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-16-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-103"><span style="display: inline-block; position: relative; width: 11px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.3px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-104"><span class="mi" id="MathJax-Span-105" style="font-family: STIXGeneral-Italic;">w</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.7px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-16">w</script> (that from the current iteration rather than the previous one).   That is, we compute <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-17-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-106"><span style="display: inline-block; position: relative; width: 328px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.5px 16800px 50.6px -9.9px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-107"><span class="mi" id="MathJax-Span-108" style="font-family: STIXGeneral-Italic;">A</span><span class="mo" id="MathJax-Span-109" style="font-family: STIXGeneral-Regular;">[</span><span class="mi" id="MathJax-Span-110" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-111" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-112" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span><span class="mo" id="MathJax-Span-113" style="font-family: STIXGeneral-Regular;">]</span><span class="mo" id="MathJax-Span-114" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">=</span><span class="mo" id="MathJax-Span-115" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">min</span><span class="mo" id="MathJax-Span-116" style="font-family: STIXGeneral-Regular;">{</span><span class="mi" id="MathJax-Span-117" style="font-family: STIXGeneral-Italic;">A</span><span class="mo" id="MathJax-Span-118" style="font-family: STIXGeneral-Regular;">[</span><span class="mi" id="MathJax-Span-119" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-120" style="font-family: STIXGeneral-Regular; padding-left: 4.2px;">−</span><span class="mn" id="MathJax-Span-121" style="font-family: STIXGeneral-Regular; padding-left: 4.2px;">1</span><span class="mo" id="MathJax-Span-122" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-123" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span><span class="mo" id="MathJax-Span-124" style="font-family: STIXGeneral-Regular;">]</span><span class="mo" id="MathJax-Span-125" style="font-family: STIXGeneral-Regular;">,</span><span class="munderover" id="MathJax-Span-126" style="padding-left: 3.2px;"><span style="display: inline-block; position: relative; width: 52.3px; height: 0px;"><span style="position: absolute; clip: rect(28.5px 16800px 46px -8.7px); top: -43px; left: 0px;"><span class="mo" id="MathJax-Span-127" style="font-family: STIXGeneral-Regular;">min</span><span style="display: inline-block; width: 0px; height: 43px;"></span></span><span style="position: absolute; top: -35.5px; left: 27px;"><span class="texatom" id="MathJax-Span-128"><span class="mrow" id="MathJax-Span-129"><span class="mo" id="MathJax-Span-130" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">(</span><span class="mi" id="MathJax-Span-131" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">w</span><span class="mo" id="MathJax-Span-132" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-133" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">v</span><span class="mo" id="MathJax-Span-134" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">)</span></span></span><span style="display: inline-block; width: 0px; height: 38px;"></span></span></span></span><span class="mi" id="MathJax-Span-135" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">A</span><span class="mo" id="MathJax-Span-136" style="font-family: STIXGeneral-Regular;">[</span><span class="mi" id="MathJax-Span-137" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-138" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-139" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">w</span><span class="mo" id="MathJax-Span-140" style="font-family: STIXGeneral-Regular;">]</span><span class="mo" id="MathJax-Span-141" style="font-family: STIXGeneral-Regular; padding-left: 4.2px;">+</span><span class="msubsup" id="MathJax-Span-142" style="padding-left: 4.2px;"><span style="display: inline-block; position: relative; width: 22.3px; height: 0px;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.5px); top: -43px; left: 0px;"><span class="mi" id="MathJax-Span-143" style="font-family: STIXGeneral-Italic;">c</span><span style="display: inline-block; width: 0px; height: 43px;"></span></span><span style="position: absolute; top: -35.5px; left: 8px;"><span class="texatom" id="MathJax-Span-144"><span class="mrow" id="MathJax-Span-145"><span class="mi" id="MathJax-Span-146" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">w</span><span class="mi" id="MathJax-Span-147" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">v</span></span></span><span style="display: inline-block; width: 0px; height: 38px;"></span></span></span></span><span class="mo" id="MathJax-Span-148" style="font-family: STIXGeneral-Regular;">}</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 18.1px; vertical-align: -5.6px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-17">A[i,v] = \min\{ A[i-1,v], \min_{(w,v)} A[i,w] + c_{wv} \}</script>, where the inner minimum ranges only over forward edges sticking into <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-18-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-149"><span style="display: inline-block; position: relative; width: 8px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.3px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-150"><span class="mi" id="MathJax-Span-151" style="font-family: STIXGeneral-Italic;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.7px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-18">v</script> (i.e., with <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-19-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-152"><span style="display: inline-block; position: relative; width: 41px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(31px 16800px 46.4px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-153"><span class="mi" id="MathJax-Span-154" style="font-family: STIXGeneral-Italic;">w</span><span class="mo" id="MathJax-Span-155" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">&lt;</span><span class="mi" id="MathJax-Span-156" style="font-family: STIXGeneral-Italic; padding-left: 5.3px;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 11.4px; vertical-align: -1.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-19">w \lt v</script>).  Note that all relevant subproblems from the current round (<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-20-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-157"><span style="display: inline-block; position: relative; width: 45px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.8px 16800px 48.6px -9.9px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-158"><span class="mi" id="MathJax-Span-159" style="font-family: STIXGeneral-Italic;">A</span><span class="mo" id="MathJax-Span-160" style="font-family: STIXGeneral-Regular;">[</span><span class="mi" id="MathJax-Span-161" style="font-family: STIXGeneral-Italic;">i</span><span class="mo" id="MathJax-Span-162" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-163" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">w</span><span class="mo" id="MathJax-Span-164" style="font-family: STIXGeneral-Regular;">]</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 15.8px; vertical-align: -3.6px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-20">A[i,w]</script> for all <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-21-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-165"><span style="display: inline-block; position: relative; width: 41px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(31px 16800px 46.4px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-166"><span class="mi" id="MathJax-Span-167" style="font-family: STIXGeneral-Italic;">w</span><span class="mo" id="MathJax-Span-168" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">&lt;</span><span class="mi" id="MathJax-Span-169" style="font-family: STIXGeneral-Italic; padding-left: 5.3px;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 11.4px; vertical-align: -1.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-21">w \lt v</script> with <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-22-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-170"><span style="display: inline-block; position: relative; width: 71px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 49px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-171"><span class="mo" id="MathJax-Span-172" style="font-family: STIXGeneral-Regular;">(</span><span class="mi" id="MathJax-Span-173" style="font-family: STIXGeneral-Italic;">w</span><span class="mo" id="MathJax-Span-174" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-175" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span><span class="mo" id="MathJax-Span-176" style="font-family: STIXGeneral-Regular;">)</span><span class="mo" id="MathJax-Span-177" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">∈</span><span class="mi" id="MathJax-Span-178" style="font-family: STIXGeneral-Italic; padding-left: 5.3px;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.4px;"></span></span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.3px; vertical-align: -4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-22">(w,v) \in E</script>) are available for constant-time lookup.  In even iterations, we compute this same recurrence using only the backward edges (again, all relevant subproblems from the current round are available for constant-time lookup).  Which of the following is true about this modified Bellman-Ford algorithm?</div>
+<div class="course-quiz-options randomize"></div>
+<table class="table">
+<tbody><tr>
+<th>Your Answer</th>
+<th></th>
+<th>Score</th>
+<th>Explanation</th>
+</tr>
+<tr>
+<td>
+<input class="course-quiz-input" type="radio" name="answer[88fc378cafb68e38d8e36b3ca73b4697][]" id="gensym_50fcebd3b365c" value="8c0931765bf7c17485a6264d04d0bf40" checked="" disabled="">It correctly computes shortest paths if and only if the input graph has no negative-cost cycle.</td>
+<td><span class="course-quiz-answer-correct" title="Correct" alt="Correct">✔</span></td>
+<td>1.00</td>
+<td>Indeed.  Can you prove it?  As a preliminary step, prove that with a directed acyclic graph, considering destinations in topological order allows one to compute correct shortest paths in one pass (and thus, in linear time).  Roughly, pass <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-23-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-179"><span style="display: inline-block; position: relative; width: 5px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(29px 16800px 46.2px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-180"><span class="mi" id="MathJax-Span-181" style="font-family: STIXGeneral-Italic;">i</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.2px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-23">i</script> of this optimized Bellman-Ford algorithm computes shortest paths amongst those comprising at most <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-24-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-182"><span style="display: inline-block; position: relative; width: 5px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(29px 16800px 46.2px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-183"><span class="mi" id="MathJax-Span-184" style="font-family: STIXGeneral-Italic;">i</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.2px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-24">i</script> "alternations" between forward and backward edges.</td>
+</tr>
+<tr>
+<td>Total</td>
+<td></td>
+<td>1.00 / 1.00</td>
+<td></td>
+</tr>
+</tbody></table>
+</div><div class="course-quiz-question-body">
+<h3 class="course-quiz-question-number">Question 3</h3>
+<div class="course-quiz-question-text">Consider a directed graph in which every edge has length 1.  Suppose we run the Floyd-Warshall algorithm with the following modification: instead of using the recurrence A[i,j,k] = min{A[i,j,k-1], A[i,k,k-1] + A[k,j,k-1]}, we use the recurrence A[i,j,k] = A[i,j,k-1] + A[i,k,k-1] * A[k,j,k-1].  For the base case, set A[i,j,0] = 1 if (i,j) is an edge and 0 otherwise.  What does this modified algorithm compute -- specificially, what is A[i,j,n] at the conclusion of the algorithm?</div>
+<div class="course-quiz-options randomize"></div>
+<table class="table">
+<tbody><tr>
+<th>Your Answer</th>
+<th></th>
+<th>Score</th>
+<th>Explanation</th>
+</tr>
+<tr>
+<td>
+<input class="course-quiz-input" type="radio" name="answer[848db8a80990f25509a107bc4882c2ab][]" id="gensym_50fcebd3b6f66" value="3cc988960c98db4df45f924e98c717c5" checked="" disabled="">The number of simple (i.e., cycle-free) paths from <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-25-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-185"><span style="display: inline-block; position: relative; width: 5px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(29px 16800px 46.2px -8.2px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-186"><span class="mi" id="MathJax-Span-187" style="font-family: STIXGeneral-Italic;">i</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.2px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-25">i</script> to <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-26-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-188"><span style="display: inline-block; position: relative; width: 5px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(29px 16800px 49.5px -11.1px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-189"><span class="mi" id="MathJax-Span-190" style="font-family: STIXGeneral-Italic;">j<span style="display: inline-block; overflow: hidden; height: 1px; width: 0px;"></span></span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.4px; vertical-align: -4.5px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-26">j</script>.</td>
+<td><span class="course-quiz-answer-incorrect" title="Incorrect" alt="Incorrect">✘</span></td>
+<td>0.00</td>
+<td>How do you prevent cycles?</td>
+</tr>
+<tr>
+<td>Total</td>
+<td></td>
+<td>0.00 / 1.00</td>
+<td></td>
+</tr>
+</tbody></table>
+</div><div class="course-quiz-question-body">
+<h3 class="course-quiz-question-number">Question 4</h3>
+<div class="course-quiz-question-text">Suppose we run the Floyd-Warshall algorithm on a directed graph <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-27-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-191"><span style="display: inline-block; position: relative; width: 75px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 49px -8.1px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-192"><span class="mi" id="MathJax-Span-193" style="font-family: STIXGeneral-Italic;">G</span><span class="mo" id="MathJax-Span-194" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">=</span><span class="mo" id="MathJax-Span-195" style="font-family: STIXGeneral-Regular; padding-left: 5.3px;">(</span><span class="mi" id="MathJax-Span-196" style="font-family: STIXGeneral-Italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 1.3px;"></span></span><span class="mo" id="MathJax-Span-197" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-198" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.4px;"></span></span><span class="mo" id="MathJax-Span-199" style="font-family: STIXGeneral-Regular;">)</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 16.3px; vertical-align: -4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-27">G=(V,E)</script> in which every edge's length is either -1, 0, or 1.  Suppose further that <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-28-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-200"><span style="display: inline-block; position: relative; width: 12px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.8px 16800px 46.3px -8.1px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-201"><span class="mi" id="MathJax-Span-202" style="font-family: STIXGeneral-Italic;">G</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.5px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-28">G</script> is strongly connected, with at least one <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-29-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-203"><span style="display: inline-block; position: relative; width: 9px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.3px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-204"><span class="mi" id="MathJax-Span-205" style="font-family: STIXGeneral-Italic;">u</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-29">u</script>-<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-30-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-206"><span style="display: inline-block; position: relative; width: 8px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.3px -8.7px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-207"><span class="mi" id="MathJax-Span-208" style="font-family: STIXGeneral-Italic;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.7px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-30">v</script> path for every pair <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-31-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-209"><span style="display: inline-block; position: relative; width: 24px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 48.4px -8.3px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-210"><span class="mi" id="MathJax-Span-211" style="font-family: STIXGeneral-Italic;">u</span><span class="mo" id="MathJax-Span-212" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-213" style="font-family: STIXGeneral-Italic; padding-left: 3.2px;">v</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 11.8px; vertical-align: -3.4px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-31">u,v</script> of vertices.  The graph <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-32-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-214"><span style="display: inline-block; position: relative; width: 12px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.8px 16800px 46.3px -8.1px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-215"><span class="mi" id="MathJax-Span-216" style="font-family: STIXGeneral-Italic;">G</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.5px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-32">G</script> may or may not have a negative-cost cycle.  How large can the final entries A[i,j,n] be, in absolute value?  Choose the smallest number that is guaranteed to be a valid upper bound.  (As usual, <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-33-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-217"><span style="display: inline-block; position: relative; width: 9px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(32.6px 16800px 46.2px -8.8px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-218"><span class="mi" id="MathJax-Span-219" style="font-family: STIXGeneral-Italic;">n</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 9.6px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-33">n</script> denotes <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-34-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-220"><span style="display: inline-block; position: relative; width: 18px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 46.3px -7.9px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-221"><span class="texatom" id="MathJax-Span-222"><span class="mrow" id="MathJax-Span-223"><span class="mo" id="MathJax-Span-224" style="font-family: STIXGeneral-Regular;">|</span></span></span><span class="mi" id="MathJax-Span-225" style="font-family: STIXGeneral-Italic;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 1.3px;"></span></span><span class="texatom" id="MathJax-Span-226"><span class="mrow" id="MathJax-Span-227"><span class="mo" id="MathJax-Span-228" style="font-family: STIXGeneral-Regular;">|</span></span></span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.7px; vertical-align: -1.3px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-34">|V|</script>.)</div>
+<div class="course-quiz-options randomize"></div>
+<table class="table">
+<tbody><tr>
+<th>Your Answer</th>
+<th></th>
+<th>Score</th>
+<th>Explanation</th>
+</tr>
+<tr>
+<td>
+<input class="course-quiz-input" type="radio" name="answer[8730a39110973ea9999399e0691babbf][]" id="gensym_50fcebd3ba7ab" value="740b7d5189e494ed9e1917ee717030e6" checked="" disabled=""><span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-35-Frame" role="textbox" aria-readonly="true" style=""><nobr><span class="math" id="MathJax-Span-229"><span style="display: inline-block; position: relative; width: 38px; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(28.6px 16800px 46.2px -8.8px); top: -43px; left: 0px;"><span class="mrow" id="MathJax-Span-230"><span class="mi" id="MathJax-Span-231" style="font-family: STIXGeneral-Italic;">n</span><span class="mo" id="MathJax-Span-232" style="font-family: STIXGeneral-Regular; padding-left: 4.2px;">−</span><span class="mn" id="MathJax-Span-233" style="font-family: STIXGeneral-Regular; padding-left: 4.2px;">1</span></span><span style="display: inline-block; width: 0px; height: 43px;"></span></span></span><span style="border-left-width: 0px; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 13.5px; vertical-align: -1.2px;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-35">n-1</script></td>
+<td><span class="course-quiz-answer-incorrect" title="Incorrect" alt="Incorrect">✘</span></td>
+<td>0.00</td>
+<td>Experiment with graphs that have negative-cost cycles.</td>
+</tr>
+<tr>
+<td>Total</td>
+<td></td>
+<td>0.00 / 1.00</td>
+<td></td>
+</tr>
+</tbody></table>
+</div><div class="course-quiz-question-body">
+<h3 class="course-quiz-question-number">Question 5</h3>
+<div class="course-quiz-question-text">Which of the following events cannot possibly occur during the reweighting step of Johnson's algorithm for the all-pairs shortest-paths problem?  (Assume that the input graph has no negative-cost cycles.)</div>
+<div class="course-quiz-options randomize"></div>
+<table class="table">
+<tbody><tr>
+<th>Your Answer</th>
+<th></th>
+<th>Score</th>
+<th>Explanation</th>
+</tr>
+<tr>
+<td>
+<input class="course-quiz-input" type="radio" name="answer[0bdfd66e759cba8585de8ee2a3d50e3a][]" id="gensym_50fcebd3be324" value="a5d57f4a2d36b4d37e28579004ddbdca" checked="" disabled="">In a directed acyclic graph, reweighting causes the length of every path to strictly increase.</td>
+<td><span class="course-quiz-answer-incorrect" title="Incorrect" alt="Incorrect">✘</span></td>
+<td>0.00</td>
+<td>Consider a directed acyclic graph in which every edge has a negative length.</td>
+</tr>
+<tr>
+<td>Total</td>
+<td></td>
+<td>0.00 / 1.00</td>
+<td></td>
+</tr>
+</tbody></table>
+</div>            <div class="course-quiz-submit-button-container">
+                    
+    </div>
+
+    </form>
+
+
+            </div>
+        </div>
+    </div>
+        
+        <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/webfont.js" type="text/javascript" async=""></script><script type="text/javascript" async="" src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/204.min.js"></script><script type="text/javascript" async="" src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/ga.js"></script><script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/spark.js"></script>
+    
+    <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/profiles.js" type="text/javascript"></script>
+    <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/modal_focus.js" type="text/javascript"></script>
+    <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/get_query_parameters.js" type="text/javascript"></script>
+    <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/signature_track.js" type="text/javascript"></script>
+    <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/item_list.js" type="text/javascript"></script>
+    <script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/navbar.js" type="text/javascript"></script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28377374-1']);
+  _gaq.push(['_setDomainName', 'coursera.org']);
+  _gaq.push(['_setAllowLinker', true]);  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  window._204 = window._204 || [];
+  window._204.push({key:"pageview", val:{}});
+
+  (function()
+  {
+    var a = document.createElement('script'); a.type = 'text/javascript'; a.async = true;
+    a.src = 'https://eventing.coursera.org/204.min.js?client=spark&user=20169';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(a, s);
+  })();
+
+</script>
+
+    <script type="text/x-mathjax-config;executed=true">
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  
+  styleSheets: [],
+  styles: {},
+
+  jax: ["input/TeX"],
+  
+  extensions: ["tex2jax.js"],
+
+  preJax: null,
+  postJax: null,
+
+  preRemoveClass: "MathJax_Preview",
+
+  showProcessingMessages: true,
+
+  messageStyle: "none",
+  
+  displayAlign: "center",
+  displayIndent: "0em",
+  
+  delayStartupUntil: "none",
+
+  skipStartupTypeset: false,
+  
+  elements: [],
+  
+  tex2jax: {
+	    inlineMath: [
+	                 ['$$','$$'],      // uncomment this for standard TeX math delimiters
+	                 ['\\(','\\)']
+	                 ],
+
+	                 displayMath: [
+	                 ['\\[','\\]']
+	                 ],
+
+    skipTags: ["script","noscript","style","textarea","pre","code"],
+    ignoreClass: "tex2jax_ignore",
+    processClass: "tex2jax_process",
+    processEscapes: false,
+    processEnvironments: true,
+    preview: "TeX"
+    
+  },
+  
+  mml2jax: {
+    preview: "alttext"
+    
+  },
+  
+  jsMath2jax: {
+    preview: "TeX"
+    
+  },
+
+  TeX: {
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    Macros: {},
+
+    extensions: ["AMSmath.js", "AMSsymbols.js"]
+    
+  },
+
+  //============================================================================
+  //
+  //  These parameters control the MathML inupt jax.
+  //
+  MathML: {
+    //
+    //  This specifies whether to use TeX spacing or MathML spacing when the
+    //  HTML-CSS output jax is used.
+    //
+    useMathMLspacing: false
+  },
+  
+  //============================================================================
+  //
+  //  These parameters control the HTML-CSS output jax.
+  //
+  "HTML-CSS": {
+    
+    scale: 100,
+    
+    availableFonts: ["STIX","TeX"],
+    
+    preferredFont: "TeX",
+    
+    webFont: "TeX",
+    
+    imageFont: "TeX",
+    
+    undefinedFamily: "STIXGeneral,'Arial Unicode MS',serif",
+      
+    showMathMenu: true,
+
+    styles: {},
+    
+    tooltip: {
+      delayPost: 600,          // milliseconds delay before tooltip is posted after mouseover
+      delayClear: 600,         // milliseconds delay before tooltip is cleared after mouseout
+      offsetX: 10, offsetY: 5  // pixels to offset tooltip from mouse position
+    }
+  },
+  
+  //============================================================================
+  //
+  //  These parameters control the NativeMML output jax.
+  //
+  NativeMML: {
+
+    scale: 100,
+
+    showMathMenu: true,
+    showMathMenuMSIE: true,
+
+    styles: {}
+  },
+  
+  MathMenu: {
+    delay: 400,
+    
+    helpURL: "http://www.mathjax.org/help/user/",
+
+    showRenderer: true,
+    showFontMenu: false,
+    showContext:  false,
+
+    windowSettings: {
+      status: "no", toolbar: "no", locationbar: "no", menubar: "no",
+      directories: "no", personalbar: "no", resizable: "yes", scrollbars: "yes",
+      width: 100, height: 50
+    },
+    
+    styles: {}
+    
+  },
+
+  MMLorHTML: {
+    prefer: {
+      MSIE:    "MML",
+      Firefox: "MML",
+      Opera:   "HTML",
+      other:   "HTML"
+    }
+  }
+});
+</script>
+<script type="text/javascript">
+(function () {
+
+  function loadMathJax() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://d2265nx4vomwra.cloudfront.net/2.1/MathJax.js";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  }
+
+  window.loadOrRefreshMathJax = function(domId) {
+    if (window.MathJax) {
+      if (domId) {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, domId]);
+      } else {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      }
+    } else {
+      loadMathJax();
+    }
+  }
+})();
+</script>
+            <div id="stanford_footer" style="display: none; background-color: rgb(140, 21, 21); width: 100%; height: 40px; position: absolute; top: 2277px;">
+            <div style="float:right;color:white;padding-top:10px;padding-right:12px;font-size:11px;">© Stanford University, Stanford, California 94305</div>
+            <div style="padding-top:9px;padding-left:12px;font-family:&#39;Crimson Text&#39;, serif;font-size:20px;color:white;font-weight:600;">Stanford University</div>
+        </div>
+
+        <script type="text/javascript">
+
+            WebFontConfig = {
+                google: { families: [ 'Crimson+Text:400:latin' ] }
+            };
+
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+
+            $(function(){
+                //$('#stanford_footer').show();
+                $('#stanford_footer').css({'position': 'absolute', 'top': $(document).height() + 'px'});
+            });
+        </script>
+    
+    <script type="text/javascript">
+
+        function hideMaintenanceMessage() {
+            $('#maintenance_message').hide();
+            document.cookie = "spark_maintmsghide_2=1;expires=0;path=/;";
+        }
+
+        var site_base_url = "https://www.coursera.org/";
+        var spark_class_short_name = "algo2";
+        var spark_class_id = 374;
+        var spark_class_url = "/algo2-2012-001";
+        var spark_signature_url = "https://class.coursera.org/algo2-2012-001/signature/";
+
+        $(document).ready(function() {
+            //$('.course-assignment-deadline').eventLinker();
+        });
+
+    </script>
+
+<script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/quiz_timer.js"></script>
+<script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/get_query_parameters(1).js"></script>
+<script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/quiz_attempt.js"></script>
+<script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/latex_preview.js"></script>
+<script src="./Quiz Feedback 2  Algorithms  Design and Analysis, Part 2_files/db_class.js"></script>
+<script>initRunQuery(".test_query", "run_query");</script>
+<script type="text/javascript">$(function() { loadOrRefreshMathJax();})</script>
+
+
+
+
+<div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: STIXSizeOneSym, sans-serif;">ˆ</div></body></html>
